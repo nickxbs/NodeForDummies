@@ -1,5 +1,6 @@
 {
-  "name": "application-name",
+  "name": "nodefordummies",
+  "description": "Node for dummies",
   "version": "0.0.1",
   "private": true,
   "scripts": {
