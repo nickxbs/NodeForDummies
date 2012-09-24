@@ -1,5 +1,6 @@
 var express = require('express');
-var app = express();
+//var app = express();
+var app = express.createServer(express.logger());
 app.set('title', 'MiaApplication');
 // development only
 //if ('development' == app.get('env')) {
