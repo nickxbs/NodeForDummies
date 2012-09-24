@@ -1,6 +1,6 @@
 var express = require('express');
-//var app = express();
-var app = express.createServer(express.logger());
+var app = express();
+//var app = express.createServer(express.logger());
 app.set('title', 'MiaApplication');
 // development only
 //if ('development' == app.get('env')) {
@@ -27,5 +27,5 @@ app.get('/prova', function(req, res){
    
                   });
 
-app.listen(3000);
+app.listen(32428);
 console.log('Listening on port 3000');
