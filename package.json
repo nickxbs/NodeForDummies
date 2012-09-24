@@ -11,4 +11,8 @@
   "ejs": "*",
     "stylus": "*"
   }
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
 }
