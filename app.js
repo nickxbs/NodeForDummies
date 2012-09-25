@@ -36,7 +36,16 @@ app.post('/insert', function(req, res){
                 console.log(req.body);
                 var result= req.body.txtProvincia;
                 console.log('Risultato: '+result);
-                  });
+				var newComune= new Comune({
+				descrizione:req.body.txtDescrizione,
+				provincia:req.body.txtProvincia
+				})
+				newComune.save(function(err) {
+				if(err)
+					console.log(err);				
+				res.send('Comune inserito');
+				}); 
+            });
 app.get('/prova', function(req, res){
                 
                 if(req.is('text/html')){
@@ -49,7 +58,7 @@ app.get('/prova', function(req, res){
                   });
 				  
 app.get('/comuni', function(req, res) {
-  Comune.find({descrizione: "Castenedolo" } ,
+  Comune.find({} ,
   function(err, comuni) {
     comuni = comuni.map(function(d) {
 		return { 
