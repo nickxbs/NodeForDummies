@@ -2,11 +2,13 @@ var express = require('express'),
     models = require('./model'),
     db,
     Comune,
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	jade=require('jade');
 
 var app = express();
 app.set('title', 'MiaApplication');
-
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/../public'));
 								 
 if ('development' == app.get('env')) {
 	app.set('db-uri', 'mongodb://localhost/nodefordummies');
@@ -51,6 +53,9 @@ app.get('/comuni', function(req, res) {
 		});
     res.send(comuni);
   });
+});
+app.get('/InsertComune', function(req, res){
+	res.render('index.jade', {title: 'Scaliamo di bestia'});
 });
 				  
 				  
