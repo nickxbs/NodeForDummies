@@ -9,6 +9,7 @@ var app = express();
 app.set('title', 'MiaApplication');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/../public'));
+app.use(express.bodyParser());
 								 
 if ('development' == app.get('env')) {
 	app.set('db-uri', 'mongodb://localhost/nodefordummies');
@@ -30,6 +31,11 @@ models.defineModels(mongoose,function() {
 
 app.get('/', function(req, res){
                   res.send('Hello World');
+                  });
+app.post('/insert', function(req, res){
+                console.log(req.body);
+                var result= req.body.txtProvincia;
+                console.log('Risultato: '+result);
                   });
 app.get('/prova', function(req, res){
                 

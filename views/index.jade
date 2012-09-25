@@ -1,9 +1,10 @@
-form
+form(action='/insert', method='post')
  h1 
   a(href='http://nodefordummies.herokuapp.com/')
  p NodeForDummies
- label(for='txtDescrizione',text='Descrizione') 
+ label(for='txtDescrizione') Descrizione 
   input(type='text',name='txtDescrizione') 
- label(for='txtProvincia', value='Provincia') 
-  input(type='text',name='txtProvicia')
+ label(for='txtProvincia') Provincia
+  input(type='text',name='txtProvincia')
+  input(type='submit',name='insertComune') Inserisci
  
