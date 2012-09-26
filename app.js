@@ -11,7 +11,18 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/../public'));
 app.use(express.bodyParser());
 								 
+if ('development' == app.get('env')) {
+	app.set('db-uri', 'mongodb://localhost/nodefordummies');
+	 app.use(express.errorHandler({ dumpExceptions: true }));
+  app.set('view options', {
+    pretty: true
+  });
+}
+
+// production only
+if ('production' == app.get('env')) {
 	app.set('db-uri', 'mongodb://heroku:studiofarma@alex.mongohq.com:10017/app7875330');
+} 
 
 
 models.defineModels(mongoose,function() {
