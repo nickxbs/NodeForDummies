@@ -21,8 +21,9 @@ if ('development' == app.get('env')) {
 
 // production only
 if ('production' == app.get('env')) {
-	app.set('db-uri', 'mongodb://localhost/nodefordummies');
+	app.set('db-uri', 'mongodb://heroku:studiofarma@alex.mongohq.com:10017/app7875330');
 } 
+
 
 models.defineModels(mongoose,function() {
   app.Comune = Comune = mongoose.model('Comune');
