@@ -11,25 +11,16 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/../public'));
 app.use(express.bodyParser());
 								 
-if ('development' == app.get('env')) {
-	app.set('db-uri', 'mongodb://localhost/nodefordummies');
-	 app.use(express.errorHandler({ dumpExceptions: true }));
-  app.set('view options', {
-    pretty: true
-  });
-}
-
-// production only
-if ('production' == app.get('env')) {
 	app.set('db-uri', 'mongodb://heroku:studiofarma@alex.mongohq.com:10017/app7875330');
-} 
 
 
+models.defineModels(mongoose,function() {
+  app.Comune = Comune = mongoose.model('Comune');
+  db = mongoose.connect(app.set('db-uri'));
+})
 
 app.get('/', function(req, res){
-var x=app.get('env')
-                  res.send('Hello World'+x);
-				  
+                  res.send('Hello World');
                   });
 app.post('/insert', function(req, res){
                 console.log(req.body);
