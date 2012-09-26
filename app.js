@@ -25,10 +25,6 @@ if ('production' == app.get('env')) {
 } 
 
 
-models.defineModels(mongoose,function() {
-  app.Comune = Comune = mongoose.model('Comune');
-  db = mongoose.connect(app.set('db-uri'));
-})
 
 app.get('/', function(req, res){
 var x=app.get('env')
