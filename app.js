@@ -13,8 +13,8 @@ app.use(express.bodyParser());
 								 
 if ('development' == app.get('env')) {
 	app.set('db-uri', 'mongodb://localhost/nodefordummies');
-	 app.use(express.errorHandler({ dumpExceptions: true }));
-  app.set('view options', {
+	app.use(express.errorHandler({ dumpExceptions: true }));
+	app.set('view options', {
     pretty: true
   });
 }
@@ -25,10 +25,13 @@ if ('production' == app.get('env')) {
 } 
 
 
-
+models.defineModels(mongoose,function() {
+  app.Comune = Comune = mongoose.model('Comune');
+  db = mongoose.connect(app.set('db-uri'));
+})
 
 app.get('/', function(req, res){
-                  res.send('Hello World'+app.get('env'));
+                  res.send('Hello World '+app.get('env'));
                   });
 app.post('/insert', function(req, res){
                 console.log(req.body);
