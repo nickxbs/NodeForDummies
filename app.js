@@ -31,7 +31,9 @@ models.defineModels(mongoose,function() {
 })
 
 app.get('/', function(req, res){
-                  res.send('Hello World');
+var x=app.get('env')
+                  res.send('Hello World'+x);
+				  
                   });
 app.post('/insert', function(req, res){
                 console.log(req.body);
