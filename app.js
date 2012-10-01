@@ -73,6 +73,23 @@ app.get('/comuni/add/:descrizione/:provincia', function (req, res) {
 });
 
 
+app.get('/comuni/', function (req, res) {
+    console.log("Inizio ricerca...");
+    Comune.find({},
+    function (err, comuni) {
+        comuni = comuni.map(function (d) {
+            return {
+                descrizione: d.descrizione,
+                id: d._id,
+                provincia: d.provincia
+            };
+        });
+        console.log("Fine ricerca");
+        res.send(comuni);
+    });
+    console.log("Fine call");
+
+});
 
 app.get('/comuni/:descrizione', function (req, res) {
     Comune.find({ descrizione: { $regex: '\w*'+req.params.descrizione+'\w*', $options: 'i' } },
