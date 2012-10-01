@@ -26,6 +26,7 @@ if ('production' == app.get('env')) {
 //Initialize models
 models.defineModels(mongoose, function () {
     app.Comune = Comune = mongoose.model('Comune');
+    app.Asl = Asl = mongoose.model('Asl');
     db = mongoose.connect(app.set('db-uri'));
 })
 
@@ -42,7 +43,9 @@ app.get('/prova', function (req, res) {
     }
 });
 
-
+app.get('/comuni/add', function (req, res) {
+    res.render('index.jade', { title: 'Scaliamo di bestia' });
+});
 app.post('/comuni/add', function (req, res) {
     var newComune = new Comune({
         descrizione: req.body.txtDescrizione,
@@ -55,9 +58,12 @@ app.post('/comuni/add', function (req, res) {
     });
 });
 app.get('/comuni/add/:descrizione/:provincia', function (req, res) {
+    
     var newComune = new Comune({
         descrizione: req.params.descrizione,
-        provincia: req.params.provincia
+        provincia: req.params.provincia,
+        asl: [ new Asl({descrizione: 'Asl di Brescia'})]
+                    
     })
     newComune.save(function (err) {
         if (err)
@@ -81,9 +87,7 @@ app.get('/comuni/:descrizione', function (req, res) {
         res.send(comuni);
     });
 });
-app.get('/comuni/add', function (req, res) {
-    res.render('index.jade', { title: 'Scaliamo di bestia' });
-});
+
 
 
 var port = process.env.PORT || 3000;

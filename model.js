@@ -6,9 +6,25 @@ function defineModels(mongoose, fn) {
   /**
     * Model: Comune
     */
+  Asl = new Schema({
+      'descrizione': { type: String, index: true },
+      'codice': String,
+      'distretti': [String]
+  });
+
+
+
   Comune = new Schema({
     'descrizione': { type: String, index: true },
-    'provincia': String
+    'provincia': String,
+    'codiceCOmune': String,
+    'cap': [String],
+    'codiceIstat': String,
+    'asl': [Asl],
+    'isSoppresso': Boolean
+
+
+
 	});
 
   Comune.virtual('id')
@@ -22,6 +38,7 @@ function defineModels(mongoose, fn) {
   });
  
   mongoose.model('Comune', Comune);
+  mongoose.model('Asl', Asl);
 
   fn();
 }
