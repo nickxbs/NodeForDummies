@@ -1,10 +1,9 @@
-form(action='/comuni/add', method='post')
+form(action='/eccezione', method='post')
  h1 
-  a(href='http://nodefordummies.herokuapp.com/')
- p NodeForDummies
- label(for='txtDescrizione') Descrizione 
-  input(type='text',name='txtDescrizione') 
- label(for='txtProvincia') Provincia
-  input(type='text',name='txtProvincia')
-  input(type='submit',name='insertComune') Inserisci
+ p NodeForDummiesEccezione
+ label(for='messaggio') Messaggio 
+  input(type='text',name='messaggio') 
+ label(for='mittente') Mittente
+  input(type='text',name='mittente')
+  input(type='submit',name='insertEccezione') Inserisci
  

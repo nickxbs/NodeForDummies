@@ -1,0 +1,10 @@
+form(action='/comuni/add', method='post')
+ h1 
+  a(href='http://nodefordummies.herokuapp.com/')
+ p NodeForDummies
+ label(for='txtDescrizione') Descrizione 
+  input(type='text',name='txtDescrizione') 
+ label(for='txtProvincia') Provincia
+  input(type='text',name='txtProvincia')
+  input(type='submit',name='insertComune') Inserisci
+ 
