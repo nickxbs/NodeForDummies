@@ -1,0 +1,15 @@
+html
+	head
+	script(src='/socket.io/socket.io.js')
+	script(type='text/javascript')
+		var socket = io.connect('http://localhost:3000');
+		socket.on('eccezioneGestitaEvent', function (data) {
+		console.log(data);
+		window.location.reload();  
+		});
+	body
+		div
+			ul
+			- each eccezione in eccezioni
+				li.mittente= eccezione.mittente
+				li.messaggio= eccezione.messaggio

@@ -12,7 +12,7 @@
     "stylus": "*",
 	"mongoose": "*",
 	"jade":"*",
-	"socket.io":"*"
+	"socket.io":"0.7"
   },
     "engines": {
     "node": "0.8.x",

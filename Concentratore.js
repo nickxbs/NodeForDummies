@@ -8,23 +8,25 @@ var eccezioneSchema = new Schema({
       'mittente': { type: String, index: true },
       'messaggio': String
   });
+var eccezioneModel= mongoose.model('eccezioneModel', eccezioneSchema);
 
                 console.log("Prova concentratore");
                 function handleEccezione(messaggio, mittente){
-                  var newEccezione = new eccezioneSchema({
+                  var newEccezione = new eccezioneModel({
                         mittente: mittente,
                         messaggio: messaggio
                     });
                     newEccezione.save(function (err) {
                         if (err)
-                            console.log(err);
-                        res.send('Eccezione inserita');
+                            console.log(err);                        
                         notificaEccezioneGestita();
                     });
                 }
                 function notificaEccezioneGestita(){
-                        sock.emit('eccezioneGestitaEvent', { data: 'ok' });
-                }
+					sock.sockets.on('connection', function (s) {
+                        s.emit('eccezioneGestitaEvent', { data: 'ok' });
+					});
+				}
                 return {
                 getEccezione: handleEccezione
                 };
