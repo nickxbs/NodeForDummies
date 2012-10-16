@@ -61,7 +61,7 @@ app.post('/eccezione', function(req, res){
                 concentratore.getEccezione(req.body.messaggio, req.body.mittente);
 				res.send("OK");
                 });
-var port = process.env.PORT || 3000;
+
 server.listen(port, function () {
     console.log("Listening on " + port);
 });
