@@ -33,6 +33,7 @@ app.use(express.bodyParser());
 app.get('/eccezione', function (req, res) {
   res.render('index.jade' );
 });
+var port = process.env.PORT || 3000;
 app.get('/eccezione/getAll', function (req, res) {
     console.log("Inizio ricerca...");
     mongoose.model('eccezioneModel').find({},
@@ -42,11 +43,15 @@ app.get('/eccezione/getAll', function (req, res) {
                 messaggio: d.messaggio,
                 id: d._id,
                 mittente: d.mittente
+				
             };
         });
         console.log("Fine ricerca");
         //res.send(eccezioni);
-		 res.render('eccezione.jade',{"eccezioni":eccezioni} );
+		 res.render('eccezione.jade',{
+		 "eccezioni":eccezioni,
+		 "port":port
+		 } );
     });
     console.log("Fine call");
 
