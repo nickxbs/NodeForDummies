@@ -1,4 +1,4 @@
-exports.concentratore = (function(sock, mongoose){
+exports.concentratore = (function(io, mongoose){
                 var critical = 1;
                 var warning = 2;
                 var informational = 3;
@@ -10,24 +10,17 @@ exports.concentratore = (function(sock, mongoose){
                         });
                 var eccezioneModel= mongoose.model('eccezioneModel', eccezioneSchema);
 
-                console.log("Prova concentratore");
                 function handleEccezione(messaggio, mittente){
                 var newEccezione = new eccezioneModel({
                         mittente: mittente,
                         messaggio: messaggio
                         });
                 newEccezione.save(function (err) {
-                        if (err)
-                        console.log(err);                        
-                        notificaEccezioneGestita();
+                        console.log("conc. sockets" + io.sockets.length);
+                        io.sockets.emit('eccezioneGestitaEvent', { Mittente: mittente, Messaggio: messaggio });
                         });
-}
-function notificaEccezioneGestita(){
-        sock.sockets.on('connection', function (s) {
-                        s.emit('eccezioneGestitaEvent', { data: 'ok' });
-                        });
-}
-return {
-getEccezione: handleEccezione
-};
+                }
+                return {
+                        getEccezione: handleEccezione
+                };
 });

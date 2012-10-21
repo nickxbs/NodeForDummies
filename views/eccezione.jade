@@ -2,9 +2,8 @@ html
 	head
 	script(src='/socket.io/socket.io.js')
 	script(type='text/javascript')
-		var socket = io.connect('http://nodefordummies.herokuapp.com');
+		var socket = io.connect('http://localhost:3000');
 		socket.on('eccezioneGestitaEvent', function (data) {
-		console.log(data);
 		window.location.reload();  
 		});
 	body
