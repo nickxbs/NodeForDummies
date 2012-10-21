@@ -1,13 +1,14 @@
 var express = require('express'),
-http = require('http'),    
+    http = require('http'),    
     models = require('./model'),
     db,
     Comune,
 mongoose = require('mongoose');
 
 var app = express();
-var server = require('http').createServer(app);
+var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+var port = process.env.PORT || 3000;
 
 if ('development' == app.get('env')) {
     app.set('db-uri', 'mongodb://localhost/nodefordummies');
@@ -22,7 +23,7 @@ if ('production' == app.get('env')) {
     app.set('db-uri', 'mongodb://heroku:studiofarma@alex.mongohq.com:10017/app7875330');
 }
 
-var db = mongoose.connect(app.set('db-uri'));
+mongoose.connect(app.set('db-uri'));
 var concentratore = require('./Concentratore').concentratore(io, mongoose);
 
 app.set('title', 'MiaApplication');
@@ -33,7 +34,6 @@ app.use(express.bodyParser());
 app.get('/eccezione', function (req, res) {
   res.render('index.jade' );
 });
-var port = process.env.PORT || 3000;
 app.get('/eccezione/getAll', function (req, res) {
     console.log("Inizio ricerca...");
     mongoose.model('eccezioneModel').find({},
@@ -47,14 +47,12 @@ app.get('/eccezione/getAll', function (req, res) {
             };
         });
         console.log("Fine ricerca");
-        //res.send(eccezioni);
-		 res.render('eccezione.jade',{
+        res.render('eccezione.jade',{
 		 "eccezioni":eccezioni,
 		 "port":port
 		 } );
     });
     console.log("Fine call");
-
 });
 
 app.post('/eccezione', function(req, res){
