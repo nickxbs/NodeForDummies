@@ -1,11 +1,11 @@
 html
 	head
-	script(src='/socket.io/socket.io.js')
-	script(type='text/javascript')
-		var socket = io.connect('http://localhost:3000');
-		socket.on('eccezioneGestitaEvent', function (data) {
-		window.location.reload();  
-		});
+		script(src='/socket.io/socket.io.js')
+		script(type='text/javascript')
+			var socket = io.connect('http://localhost:3000');
+			socket.on('eccezioneGestitaEvent', function (data) {
+			window.location.reload();  
+			});
 	body
 		div
 			ul
