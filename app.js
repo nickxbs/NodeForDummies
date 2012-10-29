@@ -59,26 +59,6 @@ app.post('/eccezione', function(req, res){
                 res.send("OK");
                 });
 
-io.sockets.on('connection', function (socket) {
-                socket.on('eccezioneGestitaEvent', function (data) {
-                        mongoose.model('eccezioneModel').find({},
-                                function (err, eccezioni) {
-                                eccezioni = eccezioni.map(function (d) {
-                                        return {
-                                               messaggio: d.messaggio,
-                                               id: d._id,
-                                               mittente: d.mittente
-                                               };
-                                });
-                                console.log("Refresh eccezione inserita");
-                                res.render('eccezione.jade',{
-                                        "eccezioni":eccezioni,
-                                        "port":port
-                                        } );
-                                });
-                        });
-                });
-
 server.listen(port, function () {
                 console.log("Listening on " + port);
                 });
