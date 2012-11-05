@@ -27,7 +27,7 @@ mongoose.connect(app.set('db-uri'));
 var concentratore = require('./Concentratore').concentratore(io, mongoose);
 
 app.set('title', 'MiaApplication');
-app.set('views', __dirname + '/views');
+app.use('/views', express.static(__dirname + '/views'));
 app.use('public', express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 
