@@ -21,6 +21,10 @@ if ('development' == app.get('env')) {
 // production only
 if ('production' == app.get('env')) {
         app.set('db-uri', 'mongodb://heroku:studiofarma@alex.mongohq.com:10017/app7875330');
+		io.configure(function () { 
+		  io.set("transports", ["xhr-polling"]); 
+		  io.set("polling duration", 10); 
+		});
 }
 
 mongoose.connect(app.set('db-uri'));
