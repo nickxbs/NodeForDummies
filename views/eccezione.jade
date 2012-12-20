@@ -1,12 +1,17 @@
 html
 	head
 		script(src='/socket.io/socket.io.js')
+		script(src='http://code.jquery.com/jquery.min.js')
 		script(src='/views/eccezione.js')
 	body
 		div
-			ul
-			- each eccezione in eccezioni
-				span Mittente:
-				li.mittente= eccezione.mittente
-				span Messaggio:
-				li.messaggio= eccezione.messaggio
+			table(id='tab')
+				thead
+					tr	
+						th Mittente
+						th Messaggio
+				tbody
+					each eccezione in eccezioni
+						tr
+							td #{eccezione.mittente}
+							td #{eccezione.messaggio}
